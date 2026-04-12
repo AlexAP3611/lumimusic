@@ -9,6 +9,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Song extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'artist',
+        'difficulty',
+        'url'
+    ];
 
     public function tablatures(): HasMany
     {
