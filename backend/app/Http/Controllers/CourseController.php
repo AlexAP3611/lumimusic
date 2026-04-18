@@ -20,12 +20,15 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        $course = Course::create([
-            'instrument_id' => $request->instrument_id,
-            'title' => $request->title,
-            'description' => $request->description,
-            'level' => $request->level
+        $validated = $request->validate([
+            'instrument_id' => 'required|exists:instruments,id',
+            'title' => 'required|string|max:150',
+            'description' => 'nullable|string',
+            'level' => 'nullable|string|max:20'
         ]);
+
+        $course = Course::create($validated);
+
         return response()->json($course, 201);
     }
 
@@ -34,7 +37,9 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        return $course->load('lessons');
+        return $course->load(['lessons' => function ($query) {
+            $query->orderBy('position');
+        }]);
     }
 
     /**
@@ -42,18 +47,21 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
-        $course->update([
-           'title' => $request->title,
-           'description' => $request->description,
-           'level' => $request->level
+        $validated = $request->validate([
+            'title' => 'sometimes|string|max:150',
+            'description' => 'nullable|string',
+            'level' => 'nullable|string|max:20'
         ]);
-        return response()->json($course, 200);
+
+        $course->update($validated);
+
+        return response()->json($course, 201);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Course $course)
     {
         $course->delete();
         return response()->json(null, 204);

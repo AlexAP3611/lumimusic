@@ -11,6 +11,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Course extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'instrument_id',
+        'title',
+        'description',
+        'level'
+    ];
+
 
     public function courses(): BelongsTo
     {

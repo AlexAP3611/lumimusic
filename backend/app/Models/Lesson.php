@@ -16,8 +16,8 @@ class Lesson extends Model
         return $this->belongsTo(Course::class);
     }
 
-    public function users(): BelongsToMany
+    public function progress()
     {
-        return $this->belongsToMany(User::class)->withPivot('completed');
+        return $this->hasMany(UserProgress::class);
     }
 }

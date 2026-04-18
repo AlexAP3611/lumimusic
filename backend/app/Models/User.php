@@ -50,8 +50,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Instrument::class)->withPivot('level');
     }
 
-    public function lessons(): BelongsToMany
+    public function progress()
     {
-        return $this->belongsToMany(Lesson::class)->withPivot('completed');
+        return $this->hasMany(UserProgress::class);
     }
 }
