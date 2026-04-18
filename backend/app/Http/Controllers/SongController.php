@@ -20,13 +20,14 @@ class SongController extends Controller
 
     public function store(Request $request)
     {
-        $song = Song::create($request->only([
-            'title',
-            'artist',
-            'difficulty',
-            'url'
-        ]));
-        return response()->json($song, 201);
+        $validated = $request->validate([
+            'title' => 'required|string|max:150',
+            'artist' => 'required|string|max:150',
+            'difficulty' => 'nullable|string',
+            'url' => 'nullable|string'
+        ]);
+
+        return Song::create($validated);
     }
 
     public function update(Request $request, Song $song)

@@ -11,6 +11,10 @@ class Instrument extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'instrument_name'
+    ];
+
     public function courses(): HasMany
     {
         return $this->hasMany(Course::class);

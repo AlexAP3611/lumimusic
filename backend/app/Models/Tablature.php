@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Tablature extends Model
 {
+    protected $fillable = [
+        'song_id',
+        'instrument_id',
+        'content'
+    ];
+
     use HasFactory;
 
     public function song(): BelongsTo

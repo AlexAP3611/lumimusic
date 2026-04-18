@@ -29,7 +29,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/logout', [AuthController::class, 'logout']);
 
-    Route::resource('/songs', SongController::class);
     Route::resource('/courses', CourseController::class);
     Route::resource('/instruments', InstrumentController::class);
     Route::resource('/lessons', LessonController::class);
@@ -41,10 +40,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/progress/{progress}', [UserProgressController::class, 'destroy']);
 
     Route::get('/instruments/{instrument}/courses', function (Instrument $instrument) {
-        return $instrument->courses;
+        return $instrument->load('courses');
     });
 });
-
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);

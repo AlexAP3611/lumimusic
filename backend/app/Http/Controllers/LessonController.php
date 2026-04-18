@@ -22,8 +22,8 @@ class LessonController extends Controller
     {
         $validated = $request->validate([
             'course_id' => 'required|exists:courses,id',
-            'title' => 'required|string|max:150',
-            'content' => 'nullable|string',
+            'lesson_name' => 'required|string|max:150',
+            'lesson_description' => 'nullable|string',
             'position' => 'sometimes|integer',
         ]);
 
@@ -46,8 +46,8 @@ class LessonController extends Controller
     public function update(Request $request, Lesson $lesson)
     {
         $validated = $request->validate([
-            'title' => 'sometimes|string|max:150',
-            'content' => 'nullable|string',
+            'lesson_name' => 'sometimes|string|max:150',
+            'lesson_description' => 'nullable|string',
             'position' => 'sometimes|integer',
         ]);
 

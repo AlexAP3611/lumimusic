@@ -21,13 +21,10 @@ class InstrumentController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:150',
-            'description' => 'nullable|string',
+            'instrument_name' => 'required|string|max:150'
         ]);
 
-        $instrument = Instrument::create($validated);
-
-        return response()->json($instrument, 201);
+        return Instrument::create($validated);
     }
 
     /**
@@ -35,7 +32,7 @@ class InstrumentController extends Controller
      */
     public function show(Instrument $instrument)
     {
-        return $instrument::load('courses');
+        return $instrument->courses;
     }
 
     /**
@@ -44,8 +41,7 @@ class InstrumentController extends Controller
     public function update(Request $request, Instrument $instrument)
     {
         $validated = $request->validate([
-            'name' => 'sometimes|string|max:150',
-            'description' => 'nullable|string',
+            'instrument_name' => 'required|string|max:150',
         ]);
 
         $instrument->update($validated);

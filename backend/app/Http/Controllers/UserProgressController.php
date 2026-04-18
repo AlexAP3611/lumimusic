@@ -12,11 +12,7 @@ class UserProgressController extends Controller
      */
     public function index(Request $request)
     {
-        $validated = $request->validate([
-            'user_id' => 'required|exists:users,id',
-        ]);
-
-        return UserProgress::where('user_id', $validated['user_id'])
+        return UserProgress::where('user_id', auth()->id())
             ->with('lesson')
             ->get();
     }
@@ -27,13 +23,12 @@ class UserProgressController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'user_id' => 'required|exists:users,id',
             'lesson_id' => 'required|exists:lessons,id',
         ]);
 
         $progress = UserProgress::updateOrCreate(
             [
-                'user_id' => $validated['user_id'],
+                'user_id' => auth()->id(),
                 'lesson_id' => $validated['lesson_id']
             ],
             [

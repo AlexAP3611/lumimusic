@@ -45,6 +45,8 @@ class TablatureController extends Controller
     public function update(Request $request, Tablature $tablature)
     {
         $validated = $request->validate([
+            'song_id' => 'required|exists:songs,id',
+            'instrument_id' => 'required|exists:instruments,id',
             'content' => 'sometimes|string'
         ]);
 

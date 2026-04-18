@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\UserProgress;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -22,14 +23,12 @@ class CourseController extends Controller
     {
         $validated = $request->validate([
             'instrument_id' => 'required|exists:instruments,id',
-            'title' => 'required|string|max:150',
-            'description' => 'nullable|string',
-            'level' => 'nullable|string|max:20'
+            'course_name' => 'required|string',
+            'course_description' => 'nullable|string',
+            'level' => 'nullable|string'
         ]);
 
-        $course = Course::create($validated);
-
-        return response()->json($course, 201);
+        return Course::create($validated);
     }
 
     /**
@@ -37,9 +36,19 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        return $course->load(['lessons' => function ($query) {
+        $course->load(['lessons' => function ($query) {
             $query->orderBy('position');
         }]);
+
+        $userId = auth()->id();
+
+        foreach ($course->lessons as $lesson) {
+            $lesson->completed = UserProgress::where('user_id', $userId)
+                ->where('lesson_id', $lesson->id)
+                ->exists();
+        }
+
+        return $course;
     }
 
     /**
@@ -48,8 +57,8 @@ class CourseController extends Controller
     public function update(Request $request, Course $course)
     {
         $validated = $request->validate([
-            'title' => 'sometimes|string|max:150',
-            'description' => 'nullable|string',
+            'course_name' => 'sometimes|string|max:150',
+            'course_description' => 'nullable|string',
             'level' => 'nullable|string|max:20'
         ]);
 

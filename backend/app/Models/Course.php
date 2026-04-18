@@ -13,8 +13,8 @@ class Course extends Model
     use HasFactory;
     protected $fillable = [
         'instrument_id',
-        'title',
-        'description',
+        'course_name',
+        'course_description',
         'level'
     ];
 
