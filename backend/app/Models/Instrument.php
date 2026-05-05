@@ -12,7 +12,8 @@ class Instrument extends Model
     use HasFactory;
 
     protected $fillable = [
-        'instrument_name'
+        'instrument_name',
+        'image_url',
     ];
 
     public function courses(): HasMany

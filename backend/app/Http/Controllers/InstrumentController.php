@@ -58,4 +58,13 @@ class InstrumentController extends Controller
 
         return response()->noContent();
     }
+
+    public function courses(Instrument $instrument)
+    {
+        return $instrument->load([
+            'courses' => function ($query) {
+                $query->orderBy('id');
+            }
+        ]);
+    }
 }

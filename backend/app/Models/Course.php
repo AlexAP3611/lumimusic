@@ -15,7 +15,8 @@ class Course extends Model
         'instrument_id',
         'course_name',
         'course_description',
-        'level'
+        'level',
+        'image_url'
     ];
 
 

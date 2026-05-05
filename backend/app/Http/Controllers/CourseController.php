@@ -75,4 +75,17 @@ class CourseController extends Controller
         $course->delete();
         return response()->json(null, 204);
     }
+
+    public function myCourses()
+    {
+        $user = auth()->user();
+
+        return $user->instruments()
+            ->with('courses')
+            ->get()
+            ->pluck('courses')
+            ->flatten()
+            ->unique('id')
+            ->values();
+    }
 }

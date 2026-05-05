@@ -48,6 +48,7 @@ class LessonController extends Controller
         $validated = $request->validate([
             'lesson_name' => 'sometimes|string|max:150',
             'lesson_description' => 'nullable|string',
+            'course_id' => 'sometimes|exists:courses,id',
             'position' => 'sometimes|integer',
         ]);
 

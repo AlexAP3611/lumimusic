@@ -23,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'roles',
     ];
 
     /**
@@ -53,5 +54,10 @@ class User extends Authenticatable
     public function progress()
     {
         return $this->hasMany(UserProgress::class);
+    }
+
+    public function isAdmin()
+    {
+        return $this->roles === 'admin';
     }
 }
