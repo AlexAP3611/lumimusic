@@ -1,0 +1,9 @@
+Usuario administrador
+email: admin@admin.com
+contraseña: abc123.
+
+
+
+Usuario normal
+email: test@test.com
+contraseña: abc123.
