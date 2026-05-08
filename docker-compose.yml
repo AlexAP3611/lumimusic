@@ -1,10 +1,10 @@
 services:
   app:
     build:
-      context: ./backend
+      context: ./Código/backend
     container_name: laravel_app
     volumes:
-      - ./backend:/var/www/html
+      - ./Código/backend:/var/www/html
     working_dir: /var/www/html
     environment:
       - DB_CONNECTION=mysql
@@ -32,10 +32,10 @@ services:
 
   frontend:
     build:
-      context: ./frontend
+      context: ./Código/frontend
     container_name: react_app
     volumes:
-      - ./frontend:/app
+      - ./Código/frontend:/app
       - /app/node_modules
     ports:
       - "5173:5173"
