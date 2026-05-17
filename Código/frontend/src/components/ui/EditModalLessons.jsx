@@ -37,27 +37,32 @@ export default function EditModalLessons({ item, courses, onClose, onSave, isCre
 
     return (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
-            <div className="bg-[#1c2b3c] p-6 rounded-lg w-96">
-                <h2 className="text-lg font-bold mb-4">
+            <div className="bg-surface2 p-6 rounded-lg w-96">
+                <h2 className="text-lg font-bold pb-5 text-center">
                     {item.id ? "Editar lección" : "Crear lección"}
                 </h2>
 
+                <p className="text-gray pb-1">Nombre del la lección:</p>
                 <input
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="bg-[#2a3b4c] text-white placeholder:text-[#5a6b7c] border border-[#5a6b7c] focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+                    className="w-full mb-4 p-2 bg-surface3 text-white rounded"
                     placeholder="Nombre de la lección"
                 />
+
+                <p className="text-gray pb-1">Descripción de la lección:</p>
                 <textarea
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    className="bg-[#2a3b4c] text-white placeholder:text-[#5a6b7c] border border-[#5a6b7c] focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+                    className="w-full mb-4 p-2 bg-surface3 text-white rounded"
                     placeholder="Descripción de la lección  "
                 />
+
+                <p className="text-gray pb-1">Curso de la lección:</p>
                 <select
                     value={courseId}
                     onChange={(e) => setCourseId(e.target.value ? Number(e.target.value) : null)}
-                    className="bg-[#2a3b4c] text-white placeholder:text-[#5a6b7c] border border-[#5a6b7c] focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+                    className="w-full mb-4 p-2 bg-surface3 text-white rounded"
                 >
                     <option value="">Selecciona un curso</option>
 

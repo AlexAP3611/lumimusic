@@ -1,16 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-    --color-bg: #0a1f35;          /* algo más claro que #051424 */
-    --color-surface: #1a3350;     /* más visible que #122131 */
-    --color-surface2: #1e3d5c;    /* más claro que #1c2b3c */
-    --color-primary: #a3e635;     /* lime un poco más brillante */
-    --color-primary-text: #f0fdf4; /* casi blanco verdoso, legible en oscuro */
-    --color-secondary: #38bdf8;   /* sky blue ligeramente ajustado */
-    --color-accent: #f0abfc;      /* rosa más suave */
-    --color-border: #2d4a6a;      /* borde más visible */
-    --color-accent-bg: #1e3a5f;   
-    --color-accent-border: #f0abfc;
+    --color-bg: #0a1f35;          
+    --color-surface: #1a3350;     
+    --color-surface2: #1a2b3c;
+    --color-surface3: #2a3b4c;    
+    --color-primary: #a3e635;     
+    --color-primary-text: #f0fdf4; 
+    --color-secondary: #38bdf8;   
+    --color-border: #2d4a6a;      
 }
 
 .counter {

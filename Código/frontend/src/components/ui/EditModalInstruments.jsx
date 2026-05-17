@@ -31,16 +31,15 @@ export default function EditModalInstruments({ item, onClose, onSave }) {
 
     return (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
-            <div className="bg-[#1c2b3c] p-6 rounded-lg w-96">
-                <h2 className="text-lg font-bold mb-4">Editar instrumento</h2>
-                <p className="text-gray-300 mb-2">Nombre del instrumento:</p>
+            <div className="bg-surface2 p-6 rounded-lg w-96">
+                <h2 className="text-lg font-bold pb-5 text-center">
+                    {isEdit ? "Editar instrumento" : "Crear instrumento"}
+                </h2>
+                <p className="text-gray pb-1">Nombre del instrumento:</p>
                 <input
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full bg-[#2a3b4c] text-white 
-                        placeholder:text-[#5a6b7c] border border-[#5a6b7c] 
-                        focus:outline-none focus:ring-2 focus:ring-blue-500 
-                        mb-4 px-2 py-1 rounded"
+                    className="w-full mb-4 p-2 bg-surface3 text-white rounded"
                     placeholder="Nombre del instrumento"
                 />
                 <div className="flex justify-end gap-2">

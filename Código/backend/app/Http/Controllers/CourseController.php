@@ -108,11 +108,28 @@ class CourseController extends Controller
         $user = auth()->user();
 
         return $user->instruments()
-            ->with('courses')
+            ->with(['courses.lessons.progress' => function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            }])
             ->get()
             ->pluck('courses')
             ->flatten()
             ->unique('id')
-            ->values();
+            ->values()
+            ->map(function ($course) {
+                $totalLessons = $course->lessons->count();
+                $completedLessons = $course->lessons
+                    ->filter(fn($lesson) => $lesson->progress
+                        ->where('completed', true)
+                        ->isNotEmpty()
+                    )
+                ->count();
+
+                $course->progress = $totalLessons > 0
+                    ? round(($completedLessons / $totalLessons) * 100)
+                    : 0;
+
+                return $course;
+            });
     }
 }

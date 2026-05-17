@@ -6,6 +6,7 @@ import Card from "../../components/ui/Card";
 import InstrumentAdmin from "./InstrumentsAdmin";
 import CoursesAdmin from "./CoursesAdmin";
 import LessonsAdmin from "./LessonsAdmin";
+import UsersAdmin from "./UsersAdmin";
 
 export default function AdminPanel() {
     const [section, setSection] = useState("instruments");
@@ -19,11 +20,11 @@ export default function AdminPanel() {
 
     return (
         <PageContainer>
-            <h1 className="text-3xl font-bold text-white mb-6">
+            <h1 className="text-3xl font-bold text-white mb-6 text-center border-b border-gray pb-4">
                 Panel de Administración
             </h1>
 
-            <div className="flex gap-4 mb-8">
+            <div className="flex gap-4 mb-8 border-b border-gray pb-4">
                 <Button onClick={() => setSection("instruments")}>
                     Instrumentos
                 </Button>
@@ -34,11 +35,15 @@ export default function AdminPanel() {
                 <Button onClick={() => setSection("lessons")}>
                     Lecciones
                 </Button>
+                <Button onClick={() => setSection("users")}>
+                    Usuarios
+                </Button>
             </div>
             <div className="flex-1 p6">
                 {section === "instruments" && <InstrumentAdmin />}
                 {section === "courses" && <CoursesAdmin />}
                 {section === "lessons" && <LessonsAdmin />}
+                {section === "users" && <UsersAdmin />}
             </div>
 
         </PageContainer>

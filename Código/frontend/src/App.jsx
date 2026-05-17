@@ -20,6 +20,7 @@ import Courses from './pages/Courses';
 import Practice from './pages/Practice';
 import AdminPanel from './pages/admin/AdminPanel';
 import LessonDetail from './pages/LessonDetail';
+import Settings from './pages/Settings'
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -103,6 +104,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Practice />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route path="/settings"
+            element={
+              <ProtectedRoute>
+                <Settings />
               </ProtectedRoute>
             }
           />

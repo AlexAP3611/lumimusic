@@ -13,7 +13,7 @@ class SongSeeder extends Seeder
      */
     public function run(): void
     {
-        Song::insert([
+        Song::insertOrIgnore([
             [
                 'title' => 'Canción 1',
                 'artist' => 'Artista 1',

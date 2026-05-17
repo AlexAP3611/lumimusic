@@ -17,7 +17,7 @@ class CourseSeeder extends Seeder
         $instruments = Instrument::whereIn('instrument_name', ['Guitarra','Bajo','Batería','Teclado'])
             ->pluck('id', 'instrument_name');
 
-        Course::insert([
+        $coursesData = [
             [
                 'instrument_id' => $instruments['Guitarra'],
                 'course_name' => 'Curso básico de guitarra',
@@ -102,6 +102,20 @@ class CourseSeeder extends Seeder
                 'level' => 'Avanzado',
                 'image_url' => '/images/courses/teclado-avanzado.png'
             ]
-        ]);
+        ];
+
+        foreach ($coursesData as $courseData) {
+            Course::firstOrCreate(
+                [
+                    'instrument_id' => $courseData['instrument_id'],
+                    'course_name' => $courseData['course_name'],
+                ],
+                [
+                    'course_description' => $courseData['course_description'],
+                    'level' => $courseData['level'],
+                    'image_url' => $courseData['image_url'],
+                ]
+            );
+        }
     }
 }

@@ -97,8 +97,8 @@ export default function Tuner() {
     return (
         <PageContainer>
 
-            <h1 className="text-3xl font-bold text-white mb-6">
-                Tuner
+            <h1 className="text-3xl font-bold text-primary-text mb-6 text-center border-b border-gray pb-4">
+                Afinador
             </h1>
 
             <div className="flex flex-wrap  gap-2 mb-4">
@@ -120,26 +120,26 @@ export default function Tuner() {
             <Card>
                 <div className="text-center">
 
-                    <p className="text-gray-400">Detected note:</p>
+                    <p className="text-gray-400">Nota detectada:</p>
 
                     <h2 className="text-6xl text-cyan-400 font-bold mt-2">
                         {note}
                     </h2>
 
                     <p className="text-gray-500 mt-2">
-                        Frequency: {frequency.toFixed(2)} Hz
+                        Frecuencia: {frequency.toFixed(2)} Hz
                     </p>
 
                     <div className="mt-6">
                         <Button onClick={() => setIsActive(!isActive)}>
-                            {isActive ? "Stop" : "Start Tuner"}
+                            {isActive ? "Parar" : "Activar afinador"}
                         </Button>
                     </div>
 
                     <div className="mt-4">
                         {frequency > 0 && (
                             <p className="text-sm text-gray-300">
-                                Target: {selectedString.note} ({selectedString.frequency} Hz)
+                                Objetivo: {selectedString.note} ({selectedString.frequency} Hz)
                             </p>
                         )}
                     </div>
@@ -159,15 +159,13 @@ export default function Tuner() {
                         </div>
                         <p className="mt-3 text-sm text-gray-400">
                             {Math.abs(tuningOffset) < 0.05
-                                ? "Perfectly in tune"
+                                ? "Perfecto"
                                 : tuningOffset > 0
-                                    ? "Too low"
-                                    : "Too high"
+                                    ? "Demasiado bajo"
+                                    : "Demasiado alto"
                             }
                         </p>
-
                     </div>
-
                 </div>
             </Card>
 

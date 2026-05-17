@@ -58,14 +58,14 @@ export default function Courses() {
             </h2>
 
             {myCourses.length === 0 ? (
-                <p className="text-center text-gray-400 mb-6">
+                <p className="text-center text-primary-text mb-6">
                     No estás inscrito en ningún curso. Explora los cursos disponibles y comienza a aprender.
                 </p>
             ) : (
-                <div className="grid md:grid-cols-2 gap-5 mb-10 border-b border-gray-700 pb-10">
+                <div className="grid md:grid-cols-3 gap-5 mb-10 border-b border-gray-700 pb-10">
                     {myCourses.map(course => (
                         <Card key={course.id}>
-                            <h2 className="text-xl font-semibold text-white text-center mb-3">
+                            <h2 className="text-xl font-semibold text-white text-center pb-3">
                                 {course.course_name}
                             </h2>
                             <img
@@ -78,7 +78,7 @@ export default function Courses() {
                                 {course.course_description}
                             </p>
 
-                            <p className="text-gray-400 mt-4">
+                            <p className="text-gray-400 py-2">
                                 Nivel: {course.level}
                             </p>
 
@@ -87,7 +87,7 @@ export default function Courses() {
                             </div>
 
                             <div className="mt-4">
-                                <Button onClick={() => navigate(`/courses/${course.id}`)}>
+                                <Button className="w-full" onClick={() => navigate(`/courses/${course.id}`)}>
                                     Ver lecciones
                                 </Button>
                             </div>
@@ -96,14 +96,14 @@ export default function Courses() {
                 </div>
             )}
 
-            <h2 className="text-xl font-semibold text-white mt-10 pb-4 text-center">
+            <h2 className="text-xl font-semibold text-primary-text mt-10 pb-4 text-center">
                 Cursos disponibles
             </h2>
 
-            <div className="grid md:grid-cols-2 gap-5 mb-10 border-b border-gray-700 pb-10">
+            <div className="grid md:grid-cols-3 gap-5 mb-10 border-b border-white pb-10">
                 {avaliable.map(course => (
                     <Card key={course.id}>
-                        <h2 className="text-white font-semibold text-center mb-3">
+                        <h2 className="text-primary-text font-semibold text-center pb-3">
                             {course.course_name}
                         </h2>
                         <img
@@ -112,16 +112,16 @@ export default function Courses() {
                             className="w-full h-32 object-cover rounded-lg mb-4"
                         />
 
-                        <p className="text-gray-400 mt-2">
+                        <p className="text-gray-400 pt-2">
                             {course.course_description}
                         </p>
 
-                        <p className="text-gray-400 mt-2">
+                        <p className="text-gray-400 py-2">
                             Nivel: {course.level}
                         </p>
 
-                        <Button onClick={() => navigate(`/courses/${course.id}`)}>
-                            Ver curso
+                        <Button className="w-full" onClick={() => navigate(`/courses/${course.id}`)}>
+                            Ver lecciones
                         </Button>
                     </Card>
                 ))}

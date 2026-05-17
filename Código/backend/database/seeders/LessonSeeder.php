@@ -95,7 +95,7 @@ class LessonSeeder extends Seeder
             $courseId = $courses[$lessonData['course_name']];
 
             if ($courseId) {
-                Lesson::create([
+                Lesson::firstOrCreate([
                     'course_id' => $courseId,
                     'lesson_name' => $lessonData['lesson_name'],
                     'lesson_description' => $lessonData['lesson_description'],

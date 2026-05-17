@@ -22,22 +22,28 @@ export default function Navbar() {
 
     const linkClass = ({ isActive }) =>
         isActive
-            ? "text-cyan-400 border-b-2 border-cyan-400 pb-1"
-            : "text-slate-400 hover:text-[#84cc16] transition-all";
+            ? "text-secondary border-b-2 border-cyan-400 pb-1"
+            : "text-white hover:text-primary transition-all";
 
     return (
-        <nav className="sticky top-0 w-full border-b border-white/10 bg-[#0f172a]/80 backdrop-blur-md shadow-sm z-50">
+        <nav className="sticky top-0 w-full border-b border-primary bg-surface backdrop-blur-md shadow-sm z-50">
             <div className="flex justify-between items-center px-6 h-16 w-full max-w-[1280px] mx-auto">
 
                 {/* LOGO */}
                 <div className="flex items-center gap-3">
-                    <span className="text-lg font-black text-[#84cc16]">
+                    <span
+                        className="material-symbols-outlined text-primary"
+                        style={{ fontVariationSettings: "'FILL' 1" }}
+                    >
+                        graphic_eq
+                    </span>
+                    <span className="text-lg font-black text-primary">
                         LumiMusic
                     </span>
                 </div>
 
                 {/* NAV LINKS (Desktop) */}
-                <div className="hidden md:flex items-center gap-6 font-medium">
+                <div className="hidden md:flex items-center gap-6 font-medium border-x px-4">
                     <NavLink to="/dashboard" className={linkClass}>Dashboard</NavLink>
                     <NavLink to="/instruments" className={linkClass}>Instrumentos</NavLink>
                     <NavLink to="/courses" className={linkClass}>Cursos</NavLink>
@@ -45,6 +51,7 @@ export default function Navbar() {
                     {/*
                     <NavLink to="/practice" className={linkClass}>Práctica</NavLink>
                     */}
+                    <NavLink to="/settings" className={linkClass}>Ajustes</NavLink>
                     {user?.role === 'admin' && (
                         <NavLink to="/admin" className={linkClass}>
                             Admin
@@ -56,13 +63,13 @@ export default function Navbar() {
                 <div className="flex items-center gap-4">
 
                     {/* USER */}
-                    <div className="flex items-center gap-4 text-sm">
-                        <span className="text-primary font-semibold">
+                    <div className="flex items-center gap-4 text">
+                        <span className="text-primary font-bold">
                             {user?.name}
                         </span>
                         <button
                             onClick={handleLogout}
-                            className="text-red hover:text-red-300 transition"
+                            className="text-red-400 hover:text-red-500 transition"
                         >
                             Cerrar sesión
                         </button>
@@ -92,11 +99,12 @@ export default function Navbar() {
                         {/*
                         <NavLink to="/practice" className={linkClass} onClick={() => setIsMenuOpen(false)}>Práctica</NavLink>
                         */}
+                        <NavLink to="/settings" className={linkClass} onClick={() => setIsMenuOpen(false)}>Ajustes</NavLink>
                         {user?.role === 'admin' && (
-                        <NavLink to="/admin" className={linkClass}>
-                            Admin
-                        </NavLink>
-                    )}
+                            <NavLink to="/admin" className={linkClass}>
+                                Admin
+                            </NavLink>
+                        )}
                     </div>
                 )}
         </nav >

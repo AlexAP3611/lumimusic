@@ -41,27 +41,32 @@ export default function EditModalCourses({ item, instruments, onClose, onSave })
 
     return (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
-            <div className="bg-[#1c2b3c] p-6 rounded-lg w-96">
-                <h2 className="text-lg font-bold mb-4">
+            <div className="bg-surface2 p-6 rounded-lg w-96">
+                <h2 className="text-lg font-bold pb-5 text-center">
                     {isEdit ? "Editar curso" : "Crear curso"}
                 </h2>
 
+                <p className="text-gray pb-1">Nombre del curso:</p>
                 <input
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full bg-[#2a3b4c] text-white placeholder:text-[#5a6b7c] border border-[#5a6b7c] focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+                    className="w-full mb-4 p-2 bg-surface3 text-white rounded"
                     placeholder="Nombre del curso"
                 />
+
+                <p className="text-gray pb-1">Descripción del curso:</p>
                 <textarea
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    className="w-full bg-[#2a3b4c] text-white placeholder:text-[#5a6b7c] border border-[#5a6b7c] focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+                    className="w-full mb-3 p-2 bg-surface3 text-white rounded"
                     placeholder="Descripción del curso"
                 />
+
+                <p className="text-gray pb-1">Instrumento del curso:</p>
                 <select
                     value={instrument_id}
                     onChange={(e) => setInstrumentId(Number(e.target.value))}
-                    className="w-full bg-[#2a3b4c] text-white placeholder:text-[#5a6b7c] border border-[#5a6b7c] focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+                    className="w-full mb-4 p-2 bg-surface3 text-white rounded"
                     placeholder="ID del instrumento asociado"
                 >
                     <option value="">Selecciona un instrumento</option>

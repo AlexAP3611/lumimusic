@@ -48,17 +48,12 @@ export default function Dashboard() {
 
             <div className="mb-4 border-b border-gray-700 pb-4 ">
                 <h1 className="text-3xl font-bold text-white mb-6">
-                    Bienvenido, <span className={`text-secondary`}>{user?.name}</span>
+                    Bienvenido, <span className="text-secondary">{user?.name}</span>
                 </h1>
                 <div className="flex items-center gap-3 mt-4 w-full">
                     <p className="text-gray-400">
                         ¡Bienvenido a tu panel de control!
                     </p>
-                    <Button
-                        className="px-6 py-3 ml-auto"
-                        onClick={() => navigate("/practice")} >
-                        Ir a práctica
-                    </Button>
                 </div>
             </div>
 

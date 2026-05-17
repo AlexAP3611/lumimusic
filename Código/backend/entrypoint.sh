@@ -1,7 +1,6 @@
 #!/bin/sh
 
 echo "Installing dependencies..."
-composer dump-autoload --optimize
 composer install --no-interaction --prefer-dist --optimize-autoloader
 
 echo "Waiting for database..."
