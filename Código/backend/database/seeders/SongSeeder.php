@@ -29,7 +29,7 @@ class SongSeeder extends Seeder
             [
                 'title' => 'Canción 3',
                 'artist' => 'Artista 3',
-                'difficulty' => 'Difícil',
+                'difficulty' => 'Avanzado',
                 'url' => 'https://example.com/song3.mp3',
             ]
         ]);

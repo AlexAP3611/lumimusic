@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 class InstrumentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Obtiene la lista de todos los instrumentos.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection Colección de instrumentos.
      */
     public function index()
     {
@@ -16,7 +18,12 @@ class InstrumentController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Almacena un nuevo instrumento en la base de datos.
+     *
+     * Valida los datos recibidos y crea un nuevo instrumento.
+     *
+     * @param Request $request Datos enviados en la petición HTTP.
+     * @return Instrument Instrumento creado.
      */
     public function store(Request $request)
     {
@@ -28,7 +35,10 @@ class InstrumentController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Muestra los cursos asociados a un instrumento específico.
+     *
+     * @param Instrument $instrument Instrumento del que se obtendrán los cursos.
+     * @return \Illuminate\Database\Eloquent\Collection Colección de cursos del instrumento.
      */
     public function show(Instrument $instrument)
     {
@@ -36,7 +46,13 @@ class InstrumentController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza un instrumento existente en la base de datos.
+     *
+     * Valida los datos recibidos y actualiza el instrumento especificado.
+     *
+     * @param Request $request Datos enviados en la petición HTTP.
+     * @param Instrument $instrument Instrumento que se desea actualizar.
+     * @return Instrument Instrumento actualizado.
      */
     public function update(Request $request, Instrument $instrument)
     {
@@ -50,7 +66,10 @@ class InstrumentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Elimina un instrumento de la base de datos.
+     *
+     * @param Instrument $instrument Instrumento que se desea eliminar.
+     * @return \Illuminate\Http\Response Respuesta vacía con código 204.
      */
     public function destroy(Instrument $instrument)
     {
@@ -59,6 +78,14 @@ class InstrumentController extends Controller
         return response()->noContent();
     }
 
+    /**
+     * Obtiene un instrumento junto con sus cursos asociados.
+     *
+     * Los cursos se cargan ordenados por identificador.
+     *
+     * @param Instrument $instrument Instrumento del que se obtendrán los cursos.
+     * @return Instrument Instrumento con sus cursos cargados.
+     */
     public function courses(Instrument $instrument)
     {
         return $instrument->load([

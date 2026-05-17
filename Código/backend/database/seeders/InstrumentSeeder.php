@@ -13,7 +13,7 @@ class InstrumentSeeder extends Seeder
      */
     public function run(): void
     {
-        Instrument::insert([
+        Instrument::insertOrIgnore([
             [
             'instrument_name' => 'Guitarra',
             'image_url' => '/images/instruments/guitarra.png',

@@ -10,7 +10,8 @@ export default defineConfig({
     },
     host: true,
     strictPort: true,
-    port: 5173,
+    port: 8080,
+    origin: 'http://localhost:8080',
   },
   plugins: [
     react(), 

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('instrument_id')->constrained()->cascadeOnDelete();;
             $table->longText('content');
             $table->timestamps();
+            $table->unique(['song_id', 'instrument_id']);
         });
     }
 

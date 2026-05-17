@@ -1,0 +1,214 @@
+@startuml LumiMusic - Diagrama de Clases
+
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+skinparam linetype ortho
+skinparam packageStyle rectangle
+
+' ─────────────────────────────────────────
+' MODELOS
+' ─────────────────────────────────────────
+
+package "Models" {
+
+    class User {
+        +id: int
+        +name: string
+        +email: string
+        -password: string
+        +roles: string
+        -remember_token: string
+        --
+        +instruments(): BelongsToMany
+        +progress(): HasMany
+        +isAdmin(): bool
+    }
+
+    class Instrument {
+        +id: int
+        +instrument_name: string
+        +image_url: string
+        --
+        +courses(): HasMany
+        +users(): BelongsToMany
+    }
+
+    class Course {
+        +id: int
+        +instrument_id: int
+        +course_name: string
+        +course_description: string
+        +level: string
+        +image_url: string
+        --
+        +courses(): BelongsTo
+        +users(): BelongsToMany
+        +lessons(): HasMany
+    }
+
+    class Lesson {
+        +id: int
+        +course_id: int
+        +lesson_name: string
+        +lesson_description: string
+        +position: int
+        --
+        +course(): BelongsTo
+        +progress(): HasMany
+    }
+
+    class Song {
+        +id: int
+        +title: string
+        +artist: string
+        +difficulty: string
+        +url: string
+        --
+        +tablatures(): HasMany
+    }
+
+    class Tablature {
+        +id: int
+        +song_id: int
+        +instrument_id: int
+        +content: string
+        --
+        +song(): BelongsTo
+        +instrument(): BelongsTo
+    }
+
+    class UserProgress {
+        +id: int
+        +user_id: int
+        +lesson_id: int
+        +progress: int
+        --
+        +lesson(): BelongsTo
+        +user(): BelongsTo
+    }
+
+    class UserInstrument <<pivot>> {
+        +user_id: int
+        +instrument_id: int
+        +level: string
+    }
+}
+
+' ─────────────────────────────────────────
+' CONTROLADORES
+' ─────────────────────────────────────────
+
+package "Controllers" {
+
+    class AuthController {
+        +register(request): JsonResponse
+        +login(request): JsonResponse
+        +logout(request): JsonResponse
+    }
+
+    class UserController {
+        +index(): JsonResponse
+    }
+
+    class SongController {
+        +index(): Collection
+        +show(song): Song
+        +store(request): Song
+        +update(request, song): JsonResponse
+        +destroy(song): JsonResponse
+    }
+
+    class CourseController {
+        +index(): Collection
+        +show(course): Course
+        +store(request): Course
+        +update(request, course): JsonResponse
+        +destroy(course): JsonResponse
+        +myCourses(): Collection
+    }
+
+    class AdminCourseController {
+        +store(request): Course
+        +update(request, course): Course
+        +destroy(id): JsonResponse
+    }
+
+    class InstrumentController {
+        +index(): Collection
+        +show(instrument): Collection
+        +store(request): Instrument
+        +update(request, instrument): Instrument
+        +destroy(instrument): Response
+        +courses(instrument): Instrument
+    }
+
+    class AdminInstrumentController {
+        +store(request): Instrument
+        +update(request, instrument): Instrument
+        +destroy(id): JsonResponse
+    }
+
+    class LessonController {
+        +index(): Collection
+        +show(lesson): Lesson
+        +store(request): JsonResponse
+        +update(request, lesson): Lesson
+        +destroy(lesson): Response
+    }
+
+    class TablatureController {
+        +index(): Collection
+        +show(tablature): Tablature
+        +store(request): JsonResponse
+        +update(request, tablature): Tablature
+        +destroy(tablature): Response
+    }
+
+    class UserProgressController {
+        +index(request): Collection
+        +show(id): UserProgress
+        +store(request): UserProgress
+        +update(request, progress): UserProgress
+        +destroy(progress): Response
+        +isCompleted(userId, lessonId): bool
+    }
+
+    class UserInstrumentController {
+        +index(): Collection
+        +store(request): JsonResponse
+        +destroy(id): JsonResponse
+    }
+}
+
+' ─────────────────────────────────────────
+' RELACIONES ENTRE MODELOS
+' ─────────────────────────────────────────
+
+User "1" -- "0..*" UserProgress : ten >
+User "0..*" -- "0..*" Instrument : practica >\n(UserInstrument)
+User "0..*" -- "0..*" Course : inscrito >
+Instrument "1" -- "0..*" Course : ten >
+Instrument "1" -- "0..*" Tablature : asociada >
+Course "1" -- "0..*" Lesson : contén >
+Lesson "1" -- "0..*" UserProgress : rexistra >
+Song "1" -- "0..*" Tablature : contén >
+
+' ─────────────────────────────────────────
+' RELACIONES CONTROLADOR → MODELO
+' ─────────────────────────────────────────
+
+AuthController ..> User : usa
+UserController ..> User : usa
+SongController ..> Song : usa
+CourseController ..> Course : usa
+CourseController ..> UserProgress : usa
+AdminCourseController ..> Course : usa
+InstrumentController ..> Instrument : usa
+AdminInstrumentController ..> Instrument : usa
+LessonController ..> Lesson : usa
+TablatureController ..> Tablature : usa
+UserProgressController ..> UserProgress : usa
+UserInstrumentController ..> User : usa
+UserInstrumentController ..> Instrument : usa
+
+@enduml

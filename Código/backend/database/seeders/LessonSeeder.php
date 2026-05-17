@@ -27,13 +27,13 @@ class LessonSeeder extends Seeder
                 'course_name' => 'Curso intermedio de guitarra',
                 'lesson_name' => 'Lección intermedia guitarra',
                 'lesson_description' => 'Lección intermedia de la guitarra',
-                'position' => 1
+                'position' => 2
             ],
             [
                 'course_name' => 'Curso avanzado de guitarra',
                 'lesson_name' => 'Lección avanzada guitarra',
                 'lesson_description' => 'Lección avanzada de la guitarra',
-                'position' => 1
+                'position' => 3
             ],
             [
                 'course_name' => 'Curso básico de bajo',
@@ -45,13 +45,13 @@ class LessonSeeder extends Seeder
                 'course_name' => 'Curso intermedio de bajo',
                 'lesson_name' => 'Lección intermedia bajo',
                 'lesson_description' => 'Lección intermedia del bajo',
-                'position' => 1
+                'position' => 2
             ],
             [
                 'course_name' => 'Curso avanzado de bajo',
                 'lesson_name' => 'Lección avanzada bajo',
                 'lesson_description' => 'Leccion avanzada del bajo',
-                'position' => 1
+                'position' => 3
             ],
             [
                 'course_name' => 'Curso básico de batería',
@@ -63,13 +63,13 @@ class LessonSeeder extends Seeder
                 'course_name' => 'Curso intermedio de batería',
                 'lesson_name' => 'Lección intermedia batería',
                 'lesson_description' => 'Lección intermedia de la batería',
-                'position' => 1
+                'position' => 2
             ],
             [
                 'course_name' => 'Curso avanzado de batería',
                 'lesson_name' => 'Lección avanzada batería',
                 'lesson_description' => 'Lección avanzada de la batería',
-                'position' => 1
+                'position' => 3
             ],
             [
                 'course_name' => 'Curso básico de teclado',
@@ -81,13 +81,13 @@ class LessonSeeder extends Seeder
                 'course_name' => 'Curso intermedio de teclado',
                 'lesson_name' => 'Lección intermedia teclado',
                 'lesson_description' => 'Lección intermedia del teclado',
-                'position' => 1
+                'position' => 2
             ],
             [
                 'course_name' => 'Curso avanzado de teclado',
                 'lesson_name' => 'Lección avanzada teclado',
                 'lesson_description' => 'Lección avanzada del teclado',
-                'position' => 1
+                'position' => 3
             ]
         ];
 

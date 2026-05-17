@@ -8,7 +8,11 @@ use Illuminate\Http\Request;
 class TablatureController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Obtiene la lista de todas las tablaturas.
+     *
+     * Incluye la información de la canción y el instrumento asociados.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection Colección de tablaturas.
      */
     public function index()
     {
@@ -16,7 +20,12 @@ class TablatureController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Almacena una nueva tablatura en la base de datos.
+     *
+     * Valida los datos recibidos y crea una nueva tablatura.
+     *
+     * @param Request $request Datos enviados en la petición HTTP.
+     * @return \Illuminate\Http\JsonResponse Respuesta JSON con la tablatura creada.
      */
     public function store(Request $request)
     {
@@ -32,7 +41,12 @@ class TablatureController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Muestra la información de una tablatura específica.
+     *
+     * Incluye la canción y el instrumento asociados.
+     *
+     * @param Tablature $tablature Tablatura que se desea mostrar.
+     * @return \Illuminate\Database\Eloquent\Model Tablatura con relaciones cargadas.
      */
     public function show(Tablature $tablature)
     {
@@ -40,7 +54,13 @@ class TablatureController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza una tablatura existente en la base de datos.
+     *
+     * Valida los datos recibidos y actualiza la tablatura especificada.
+     *
+     * @param Request $request Datos enviados en la petición HTTP.
+     * @param Tablature $tablature Tablatura que se desea actualizar.
+     * @return Tablature Tablatura actualizada.
      */
     public function update(Request $request, Tablature $tablature)
     {
@@ -56,7 +76,10 @@ class TablatureController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Elimina una tablatura de la base de datos.
+     *
+     * @param Tablature $tablature Tablatura que se desea eliminar.
+     * @return \Illuminate\Http\Response Respuesta vacía con código 204.
      */
     public function destroy(Tablature $tablature)
     {

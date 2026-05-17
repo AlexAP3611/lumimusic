@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('artist')->nullable();
             $table->text('url')->nullable();
-            $table->string('difficulty')->nullable();
             $table->timestamps();
+            $table->enum('difficulty', ['Principiante', 'Intermedio', 'Avanzado'])->nullable();
         });
     }
 

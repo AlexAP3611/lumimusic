@@ -12,12 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_progress', function (Blueprint $table) {
-            $table->foreignId('user_id')
-                ->constrained()
-                ->onDelete('cascade');
-            $table->foreignId('lesson_id')
-                ->constrained()
-                ->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('lesson_id')->constrained()->onDelete('cascade');
             $table->boolean('completed')->default(false);
             $table->primary(['user_id', 'lesson_id']);
             $table->timestamps();

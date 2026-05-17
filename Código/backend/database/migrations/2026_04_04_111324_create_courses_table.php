@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('instrument_id')->constrained()->cascadeOnDelete();
             $table->string('course_name');
-            $table->string('course_description')->nullable();
-            $table->string('level')->nullable();
+            $table->text('course_description')->nullable();
+            $table->enum('level', ['Principiante', 'Intermedio', 'Avanzado'])->nullable();
+            $table->text('image_url')->nullable();
             $table->timestamps();
+            $table->unique(['instrument_id', 'course_name']);
         });
     }
 

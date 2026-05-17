@@ -9,7 +9,9 @@ use Illuminate\Http\Request;
 class CourseController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Obtiene la lista de todos los cursos.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection Colección de cursos.
      */
     public function index()
     {
@@ -17,7 +19,12 @@ class CourseController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Almacena un nuevo curso en la base de datos.
+     *
+     * Valida los datos recibidos y crea un nuevo curso.
+     *
+     * @param Request $request Datos enviados en la petición HTTP.
+     * @return Course Curso creado.
      */
     public function store(Request $request)
     {
@@ -32,7 +39,13 @@ class CourseController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Muestra la información de un curso específico.
+     *
+     * Carga las lecciones ordenadas por posición y añade el estado
+     * de completado de cada lección para el usuario autenticado.
+     *
+     * @param Course $course Curso que se desea mostrar.
+     * @return Course Curso con sus lecciones y progreso del usuario.
      */
     public function show(Course $course)
     {
@@ -52,7 +65,13 @@ class CourseController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza un curso existente en la base de datos.
+     *
+     * Valida los datos recibidos y actualiza el curso especificado.
+     *
+     * @param Request $request Datos enviados en la petición HTTP.
+     * @param Course $course Curso que se desea actualizar.
+     * @return \Illuminate\Http\JsonResponse Respuesta JSON con el curso actualizado.
      */
     public function update(Request $request, Course $course)
     {
@@ -68,7 +87,10 @@ class CourseController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Elimina un curso de la base de datos.
+     *
+     * @param Course $course Curso que se desea eliminar.
+     * @return \Illuminate\Http\JsonResponse Respuesta vacía con código 204.
      */
     public function destroy(Course $course)
     {
@@ -76,6 +98,11 @@ class CourseController extends Controller
         return response()->json(null, 204);
     }
 
+    /**
+     * Obtiene los cursos asociados a los instrumentos del usuario autenticado.
+     *
+     * @return \Illuminate\Support\Collection Colección de cursos únicos del usuario.
+     */
     public function myCourses()
     {
         $user = auth()->user();

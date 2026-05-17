@@ -11,7 +11,7 @@ class UserProgress extends Model
     protected $fillable = [
         'user_id',
         'lesson_id',
-        'progress',
+        'completed',
     ];
     protected $table = 'user_progress';
 

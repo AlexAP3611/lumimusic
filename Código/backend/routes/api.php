@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SongController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,15 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/admin/lessons', [LessonController::class, 'store']);
         Route::put('/admin/lessons/{lesson}', [LessonController::class, 'update']);
         Route::delete('/admin/lessons/{lesson}', [LessonController::class, 'destroy']);
+
+        Route::post('/admin/songs', [SongController::class, 'store']);
+        Route::put('/admin/songs/{song}', [SongController::class, 'update']);
+        Route::delete('/admin/songs/{song}', [SongController::class, 'destroy']);
+
+        Route::get('/admin/users', [UserController::class, 'index']);
+
+        Route::put('/user/password', [AuthController::class, 'changePassword']);
+
     });
 
     Route::get('/user', function (Request $request) {
@@ -53,6 +63,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/progress', [UserProgressController::class, 'store']);
     Route::put('/progress/{progress}', [UserProgressController::class, 'update']);
     Route::delete('/progress/{progress}', [UserProgressController::class, 'destroy']);
+    Route::get('/progress/{progress}', [UserProgressController::class, 'show']);
 
     Route::get('/instruments/{instrument}/courses', [InstrumentController::class, 'courses']);
     Route::get('my-courses', [CourseController::class, 'myCourses']);
@@ -60,6 +71,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user-instruments', [UserInstrumentController::class, 'index']);
     Route::post('/user-instruments', [UserInstrumentController::class, 'store']);
     Route::delete('/user-instruments/{userInstrument}', [UserInstrumentController::class, 'destroy']);
+
+    Route::get('/songs', [SongController::class, 'index']);
+    Route::get('/songs/{song}', [SongController::class, 'show']);
+
+    Route::get('/songs/{song}/tablatures', [SongController::class, 'tablatures']);
 
 });
 

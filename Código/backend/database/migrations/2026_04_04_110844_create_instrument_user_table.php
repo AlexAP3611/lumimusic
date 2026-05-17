@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('instrument_user', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('instrument_id')->constrained()->cascadeOnDelete();
-            $table->string('level');
+            $table->enum('level', ['Principiante', 'Intermedio', 'Avanzado']);
             $table->primary(['user_id', 'instrument_id']);
             $table->timestamps();
         });

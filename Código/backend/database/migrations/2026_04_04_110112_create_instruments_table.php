@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('instruments', function (Blueprint $table) {
             $table->id();
-            $table->string('instrument_name');
+            $table->string('instrument_name')->unique();
+            $table->text('image_url')->nullable();
             $table->timestamps();
         });
     }
