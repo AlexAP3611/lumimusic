@@ -65,23 +65,25 @@ export default function CourseDetail() {
 
             {course.lessons?.map(lesson => (
                 <div key={lesson.id}
-                    className="flex justify-between items-center p-4 rounded-lg border border-gray-700 mb-3">
-                    <h3>
+                    className="grid grid-cols-1 md:grid-cols-3 items-center p-4 rounded-lg border border-gray-700 mb-3">
+                    <h3 className="text-lg text-center font-semibold text-white md:text-left">
                         {lesson.lesson_name}
                         {lesson.completed && " (completada)"}
                     </h3>
+                    <p className="text-center text-gray-400 md:text-left">
+                        {lesson.lesson_description}
+                    </p>
 
-                    <p>{lesson.lesson_description}</p>
-
-                    {!lesson.completed && (
-                        <Button onClick={() => markCompleted(lesson.id)}>
-                            Marcar como completada
+                    <div className="flex gap-2 flex-col md:justify-end md:flex-row">
+                        {!lesson.completed && (
+                            <Button onClick={() => markCompleted(lesson.id)}>
+                                Marcar como completada
+                            </Button>
+                        )}
+                        <Button onClick={() => navigate(`/lessons/${lesson.id}`)}>
+                            Ver lección
                         </Button>
-                    )}
-                    <Button onClick={() => navigate(`/lessons/${lesson.id}`)}>
-                        Ver lección
-                    </Button>
-
+                    </div>
                 </div>
             ))}
         </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lesson;
+use App\Models\UserProgress;
 use Illuminate\Http\Request;
 
 class LessonController extends Controller
@@ -51,7 +52,13 @@ class LessonController extends Controller
      */
     public function show(Lesson $lesson)
     {
-        return $lesson->load('course');
+        $lesson->load('course');
+
+        $lesson->completed = UserProgress::where('user_id', auth()->id())
+            ->where('lesson_id', $lesson->id)
+            ->exists();
+
+        return $lesson;
     }
 
     /**

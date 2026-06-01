@@ -27,7 +27,7 @@ export default function EditModalUsers({ item, onClose, onSave }) {
         if (isEdit) {
             await api.put(`/admin/users/${item.id}`, data);
         } else {
-            await api.post(`/admin/users`, { ...data, password });
+            await api.post(`/register`, { ...data, password });
         }
 
         onSave();

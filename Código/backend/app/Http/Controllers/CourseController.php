@@ -61,6 +61,10 @@ class CourseController extends Controller
                 ->exists();
         }
 
+        $total = $course->lessons->count();
+        $completed = $course->lessons->where('completed', true)->count();
+        $course->progress = $total > 0 ? round(($completed / $total) * 100) : 0;
+
         return $course;
     }
 

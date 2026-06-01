@@ -1,6 +1,6 @@
-# 🎵 LumiMusic – Plataforma de Aprendizaje Musical
+# LumiMusic – Plataforma de Aprendizaje Musical
 
-## 📌 Descripción
+## Descripción
 
 LumiMusic es una aplicación web fullstack orientada al aprendizaje musical. Permite a los usuarios seleccionar instrumentos, inscribirse en cursos, completar lecciones y hacer seguimiento de su progreso.
 
@@ -8,7 +8,7 @@ El sistema incluye un panel de administración para gestionar instrumentos, curs
 
 ---
 
-## 🛠️ Tecnologías utilizadas
+## Tecnologías utilizadas
 
 * Backend: Laravel (PHP)
 * Frontend: React + Vite
@@ -17,15 +17,19 @@ El sistema incluye un panel de administración para gestionar instrumentos, curs
 
 ---
 
-## 🚀 Ejecución del proyecto
+## Ejecución del proyecto
 
-### ✅ Requisitos
+### Requisitos
 
 * Tener Docker instalado
-
+  * Windows/Mac: https://www.docker.com/products/docker-desktop
+  * Linux:
+```bash
+    sudo apt-get install docker.io docker-compose
+```
 ---
 
-### ▶️ Pasos
+### Pasos
 
 Ejecutar el siguiente comando en la raíz del proyecto:
 
@@ -35,16 +39,14 @@ docker compose up --build
 
 ---
 
-## 🌐 Acceso a la aplicación
+## Acceso a la aplicación
 
-* Frontend: http://localhost:5173
+* Frontend: http://localhost:8080
 * Backend: http://localhost:8000
 
 ---
 
-## 🔐 Usuarios de prueba
-
-(ajusta esto a tus seeders)
+## Usuarios de prueba
 
 * Usuario:
 
@@ -58,9 +60,9 @@ docker compose up --build
 
 ---
 
-## ⚙️ Funcionalidades principales
+## Funcionalidades principales
 
-### 👤 Usuario
+### Usuario
 
 * Registro y login
 * Selección de instrumentos
@@ -68,7 +70,7 @@ docker compose up --build
 * Visualización de lecciones
 * Seguimiento de progreso
 
-### 🛠️ Administrador
+### Administrador
 
 * CRUD de instrumentos
 * CRUD de cursos
@@ -76,7 +78,7 @@ docker compose up --build
 
 ---
 
-## 📦 Notas técnicas
+## Notas técnicas
 
 * El sistema utiliza autenticación con Laravel Sanctum
 * El estado en frontend es backend-driven
@@ -85,7 +87,7 @@ docker compose up --build
 
 ---
 
-## 📈 Estado del proyecto
+## Estado del proyecto
 
 El proyecto se encuentra en una fase funcional completa:
 
@@ -99,9 +101,10 @@ Pendiente:
 * Mejora de UX/UI
 * Sistema de tablaturas
 * Búsqueda y filtros avanzados
+* Metrónomo
 
 ---
 
-## 👨‍💻 Autor
+## Autor
 
-Proyecto desarrollado como Trabajo de Fin de Grado (DAW)
+Proyecto desarrollado como Trabajo de Fin de Grado (DAW) por Alejandro Aballe Peña

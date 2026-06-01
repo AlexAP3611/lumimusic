@@ -43,7 +43,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/admin/songs/{song}', [SongController::class, 'destroy']);
 
         Route::get('/admin/users', [UserController::class, 'index']);
-        Route::post('/admin/users', [UserController::class, 'store']);
         Route::put('/admin/users/{user}', [UserController::class, 'update']);
         Route::delete('/admin/users/{user}', [UserController::class, 'destroy']);
 
