@@ -37,13 +37,8 @@ services:
     build:
       context: ./Código/frontend
     container_name: react_app
-    working_dir: /app
-    volumes:
-      - ./Código/frontend:/app
-      - /app/node_modules
     ports:
       - "8080:8080"
-    stdin_open: true
 
 volumes:
   dbdata:
