@@ -29,12 +29,20 @@ El sistema incluye un panel de administración para gestionar instrumentos, curs
 ```
 ---
 
-### Pasos
-
-Ejecutar el siguiente comando en la raíz del proyecto:
+### Desenvolvemento (con hot reload)
 
 ```bash
 docker compose up --build
+```
+
+Os cambios no frontend reflíctense automaticamente sen reiniciar os contedores.
+
+---
+
+### Produción
+
+```bash
+docker compose -f docker-compose.yml up -d --build
 ```
 
 ---
@@ -100,7 +108,7 @@ El proyecto se encuentra en una fase funcional completa:
 Pendiente:
 
 * Mejora de UX/UI
-* Sistema de tablaturas
+* Reproductor de tablaturas con sincronización de sonido
 * Búsqueda y filtros avanzados
 * Metrónomo
 

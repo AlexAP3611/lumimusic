@@ -1,12 +1,13 @@
+name: lumimusic
 services:
   app:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     build:
-      context: ./Código/backend
+      context: ./backend
     container_name: AlejandroAballe-app
     volumes:
-      - ./Código/backend:/var/www/html
+      - ./backend:/var/www/html
       - composer_cache:/root/.composer/cache
     working_dir: /var/www/html
     environment:
@@ -39,7 +40,7 @@ services:
 
   frontend:
     build:
-      context: ./Código/frontend
+      context: ./frontend
     container_name: AlejandroAballe-frontend
     networks:
       - AlejandroAballe-network
