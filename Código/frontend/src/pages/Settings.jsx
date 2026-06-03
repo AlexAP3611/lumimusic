@@ -72,7 +72,7 @@ export default function Settings() {
                         type="password"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
-                        className="w-full mb-4 p-2 bg-surface3 text-white rounded"
+                        className="w-full mb-4 p-2 bg-surface3 text-white placeholder:text-[#5a6b7c] rounded"
                         placeholder="Confirmar nueva contraseña"
                     />
 

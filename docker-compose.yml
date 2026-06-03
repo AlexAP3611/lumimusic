@@ -4,42 +4,67 @@ services:
       - "host.docker.internal:host-gateway"
     build:
       context: ./Código/backend
-    container_name: laravel_app
+    container_name: AlejandroAballe-app
     volumes:
       - ./Código/backend:/var/www/html
       - composer_cache:/root/.composer/cache
     working_dir: /var/www/html
     environment:
       - DB_CONNECTION=mysql
-      - DB_HOST=mysql_db
+      - DB_HOST=db
       - DB_PORT=3306
-      - DB_DATABASE=lumimusic
+      - DB_DATABASE=proxectodb
       - DB_USERNAME=root
       - DB_PASSWORD=root
     ports:
       - "8000:80"
     depends_on:
       - db
+    networks:
+      - AlejandroAballe-network
 
   db:
     image: mysql:8.0
-    container_name: mysql_db
+    container_name: AlejandroAballe-db
     restart: always
     environment:
-      MYSQL_DATABASE: lumimusic
+      MYSQL_DATABASE: proxectodb
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - "3306:3306"
+      - "33006:3306"
     volumes:
-      - dbdata:/var/lib/mysql
+      - AlejandroAballe-data:/var/lib/mysql
+    networks:
+      - AlejandroAballe-network
 
   frontend:
     build:
       context: ./Código/frontend
-    container_name: react_app
+    container_name: AlejandroAballe-frontend
+    networks:
+      - AlejandroAballe-network
     ports:
       - "8080:8080"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: AlejandroAballe-phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+    networks:
+      - AlejandroAballe-network
+
+networks:
+  AlejandroAballe-network:
+    name: AlejandroAballe-network
 
 volumes:
-  dbdata:
+  AlejandroAballe-data:
+    name: AlejandroAballe-data
   composer_cache:

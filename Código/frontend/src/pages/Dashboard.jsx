@@ -64,7 +64,7 @@ export default function Dashboard() {
             <div className="flex justify-center mb-6 border-b border-gray-700 pb-6">
                 {myInstruments.length === 0 ? (
                     <p className="text-gray-400 mb-6 text-center">
-                        No has añadido instrumentos aún
+                        No has añadido ningún instrumento aún
                     </p>
                 ) : (
                     <div className="flex flex-wrap gap-3 mb-10">
@@ -94,7 +94,7 @@ export default function Dashboard() {
             <h2 className="text-xl text-white pb-5 text-center">Mis Cursos</h2>
 
             {filteredCourses.length === 0 ? (
-                <p className="text-gray-400 mb-6 text-center">No tienes cursos aún</p>
+                <p className="text-gray-400 mb-6 text-center">No tienes ningún curso disponible aún, añade algunos instrumentos para ver cursos relacionados.</p>
             ) : (
                 <div className="flex flex-wrap gap-5 mb-10 justify-center border-b border-gray-700 pb-10">
                     {filteredCourses.map(course => (

@@ -4,7 +4,7 @@ echo "Installing dependencies..."
 composer install --no-interaction --prefer-dist --optimize-autoloader
 
 echo "Waiting for database..."
-until mysqladmin ping -h mysql_db -uroot -proot --ssl=0 --silent; do
+until mysqladmin ping -h db -uroot -proot --ssl=0 --silent; do
   sleep 2
 done
 

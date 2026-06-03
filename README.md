@@ -43,6 +43,7 @@ docker compose up --build
 
 * Frontend: http://localhost:8080
 * Backend: http://localhost:8000
+* PhpMyAdmin: http://localhost:8081 (usuario: root, contraseña: root)
 
 ---
 

@@ -96,7 +96,7 @@ export default function Courses() {
                 </div>
             )}
 
-            <h2 className="text-xl font-semibold text-primary-text mt-10 pb-4 text-center">
+            <h2 className="text-xl font-semibold text-primary-text mt-10 pb-4 text-center border-b border-white">
                 Cursos disponibles
             </h2>
 
