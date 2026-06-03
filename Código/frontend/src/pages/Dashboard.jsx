@@ -3,6 +3,7 @@ import PageContainer from "../components/layout/PageContainer";
 import Card from "../components/ui/Card";
 import Button from "../components/ui/Button";
 import ProgressBar from "../components/ui/ProgressBar";
+import Loading from "../components/ui/Loading";
 import { useState, useEffect, useContext, use } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
@@ -13,7 +14,7 @@ export default function Dashboard() {
     const { logout, user } = useContext(AuthContext);
     const [myInstruments, setMyInstruments] = useState([]);
     const [myCourses, setMyCourses] = useState([]);
-
+    const [loading, setLoading] = useState(true);
     const filteredCourses = (myInstruments ?? []).length === 0
         ? myCourses
         : myCourses.filter(course =>
@@ -21,15 +22,16 @@ export default function Dashboard() {
         );
 
     useEffect(() => {
-        api.get("/my-courses")
-            .then(res => setMyCourses(res.data))
-            .catch(err => console.error(err));
-    }, []);
-
-    useEffect(() => {
-        api.get("/user-instruments")
-            .then(res => setMyInstruments(res.data ?? []))
-            .catch(err => console.error(err));
+        Promise.all([
+            api.get("/my-courses"),
+            api.get("/user-instruments")
+        ])
+        .then(([coursesRes, instrumentsRes]) => {
+            setMyCourses(coursesRes.data);
+            setMyInstruments(instrumentsRes.data ?? []);
+        })
+        .catch(err => console.error(err))
+        .finally(() => setLoading(false));
     }, []);
 
     const handleLogout = async () => {
@@ -42,6 +44,8 @@ export default function Dashboard() {
         logout();
         navigate("/login");
     };
+
+    if (loading) return <Loading />;
 
     return (
         <PageContainer>

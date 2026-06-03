@@ -3,12 +3,14 @@ import api from "/src/services/api";
 import Button from "/src/components/ui/Button";
 import EditModalLessons from "../../components/ui/EditModalLessons";
 import Table from "../../components/ui/Table";
+import Loading from "../../components/ui/Loading";
 
 export default function LessonsAdmin() {
     const [data, setData] = useState([]);
     const [editing, setEditing] = useState(null);
     const [courses, setCourses] = useState([]);
     const [isCreating, setIsCreating] = useState(false);
+    const [loading, setLoading] = useState(true);
     const courseMap = Object.fromEntries(
         courses.map((c) => [c.id, c.course_name])
     );
@@ -31,12 +33,14 @@ export default function LessonsAdmin() {
     };
 
     useEffect(() => {
-        fetchData();
+        fetchData().finally(() => setLoading(false));
     }, []);
+
+    if (loading) return <Loading />;
 
     return (
         <div>
-            <h2 className="text-2xl mb-4">Lecciones</h2>
+            <h2 className="text-2xl text-white mb-4">Lecciones</h2>
             <Button 
                 onClick={() => setEditing({ 
                     id: null,

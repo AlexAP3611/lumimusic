@@ -4,12 +4,14 @@ import PageContainer from "../../components/layout/PageContainer";
 import Button from "../../components/ui/Button";
 import Table from "../../components/ui/Table";
 import EditModalInstruments from "../../components/ui/EditModalInstruments";
+import Loading from "../../components/ui/Loading";
 
 
 export default function InstrumentsAdmin() {
     const [data, setData] = useState([]);
     const [editing, setEditing] = useState(null);
     const [isCreating, setIsCreating] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const fetchData = async () => {
         const res = await api.get("/instruments");
@@ -17,7 +19,7 @@ export default function InstrumentsAdmin() {
     };
 
     useEffect(() => {
-        fetchData();
+        fetchData().finally(() => setLoading(false));
     }, []);
 
     const handleDelete = async (id) => {
@@ -25,9 +27,11 @@ export default function InstrumentsAdmin() {
         fetchData();
     };
 
+    if (loading) return <Loading />;
+
     return (
         <div>
-            <h2 className="text-2xl mb-4">Instrumentos</h2>
+            <h2 className="text-2xl text-white mb-4">Instrumentos</h2>
             <Button 
                 onClick={() => {
                     setEditing(null);

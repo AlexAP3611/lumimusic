@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../services/api";
 import Button from "../components/ui/Button";
+import Loading from "../components/ui/Loading";
 
 export default function LessonDetail() {
     const { id } = useParams();
@@ -30,7 +31,7 @@ export default function LessonDetail() {
         }
     };
 
-    if (!lesson) return <p className="text-white">Cargando...</p>;
+    if (!lesson) return <Loading />;
 
     return (
         <div className="max-w px-4 py-6 text-white">

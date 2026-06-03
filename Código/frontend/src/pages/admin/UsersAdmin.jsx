@@ -4,19 +4,20 @@ import PageContainer from "../../components/layout/PageContainer";
 import Button from "../../components/ui/Button";
 import Table from "../../components/ui/Table";
 import EditModalUsers from "../../components/ui/EditModalUsers";
+import Loading from "../../components/ui/Loading";
 
 export default function UsersAdmin() {
     const [data, setData] = useState ([]);
     const [editing, setEditing] = useState(null);
     const [isCreating, setIsCreating] = useState(false);
-
+    const [loading, setLoading] = useState(true);
     const fetchData = async () => {
         const res = await api.get("/admin/users");
         setData(res.data);
     };
 
     useEffect(() => {
-        fetchData();
+        fetchData().finally(() => setLoading(false));
     }, []);
 
     const handleDelete = async (id) => {
@@ -24,9 +25,11 @@ export default function UsersAdmin() {
         fetchData();
     };
 
+    if (loading) return <Loading />;
+
     return (
         <div>
-            <h2 className="text-2xl mb-4">Usuarios</h2>
+            <h2 className="text-2xl text-white mb-4">Usuarios</h2>
             <Button
                 className="mb-4"
                 onClick={() => {

@@ -6,6 +6,7 @@ import PageContainer from "../components/layout/PageContainer";
 import Card from "../components/ui/Card";
 import Button from "../components/ui/Button";
 import ProgressBar from "../components/ui/ProgressBar";
+import Loading from "../components/ui/Loading";
 
 export default function Courses() {
     const navigate = useNavigate();
@@ -38,13 +39,7 @@ export default function Courses() {
     }, []);
 
     if (loading) {
-        return (
-            <PageContainer>
-                <p className="text-gray-400 text-center">
-                    Cargando cursos...
-                </p>
-            </PageContainer>
-        );
+        return <Loading />;
     }
 
     return (

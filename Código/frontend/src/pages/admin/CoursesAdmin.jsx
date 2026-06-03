@@ -3,12 +3,14 @@ import api from "/src/services/api";
 import Button from "../../components/ui/Button";
 import EditModalCourses from "../../components/ui/EditModalCourses";
 import Table from "../../components/ui/Table";
+import Loading from "../../components/ui/Loading";
 
 export default function CoursesAdmin() {
     const [data, setData] = useState([]);
     const [editing, setEditing] = useState(null);
     const [instruments, setInstruments] = useState([]);
     const [isCreating, setIsCreating] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const fetchData = async () => {
         const res = await api.get("/courses");
@@ -18,7 +20,7 @@ export default function CoursesAdmin() {
     };
 
     useEffect(() => {
-        fetchData();
+        fetchData().finally(() => setLoading(false));
     }, []);
 
     const handleDelete = async (id) => {
@@ -26,9 +28,11 @@ export default function CoursesAdmin() {
         fetchData();
     }
 
+    if (loading) return <Loading />;
+
     return (
         <div>
-            <h2 className="text-2xl mb-4">Cursos</h2>
+            <h2 className="text-2xl text-white mb-4">Cursos</h2>
             <Button
                 onClick={() => {
                     setEditing(null);

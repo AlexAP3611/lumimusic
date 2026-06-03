@@ -2,6 +2,7 @@ import api from "../services/api";
 import PageContainer from "../components/layout/PageContainer";
 import Card from "../components/ui/Card";
 import Button from "../components/ui/Button";
+import Loading from "../components/ui/Loading";
 import { useEffect, useState, useContext } from "react";
 import { useInstrument } from "../context/InstrumentContext";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 export default function Instruments() {
     const [instruments, setInstruments] = useState([]);
     const [myInstruments, setMyInstruments] = useState([]);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
     const fetchMyInstruments = async () => {
@@ -38,12 +40,20 @@ export default function Instruments() {
     );
 
     useEffect(() => {
-        api.get("/instruments")
-            .then(res => setInstruments(res.data))
-            .catch(err => console.error(err));
+        Promise.all([
+            api.get("/instruments"),
+            api.get("/user-instruments")
+        ])
+        .then(([instrumentsRes, userInstrumentsRes]) => {
+            setInstruments(instrumentsRes.data);
+            setMyInstruments(userInstrumentsRes.data ?? []);
+        })
+        .catch(err => console.error(err))
+        .finally(() => setLoading(false));
 
-        fetchMyInstruments();
     }, []);
+
+    if (loading) return <Loading />;
 
     return (
         <PageContainer>
@@ -57,13 +67,13 @@ export default function Instruments() {
             <h2 className="text-xl text-white pb-5 text-center">Tus Instrumentos</h2>
 
             {myInstruments.length === 0 ? (
-                <div className="border-b border-gray-700 mb-10">
+                <div className="border-b border-gray-700 mb-10 pb-5">
                     <p className="text-gray-400 mb-6 text-center">
                         No has añadido ningún instrumento aún
                     </p>
                 </div>
             ) : (
-                <div className="grid md:grid-cols-3 gap-4 mb-10 border border-gray-700 pb-10">
+                <div className="grid md:grid-cols-3 gap-4 mb-10 border-b border-gray-700 pb-10">
                     {myInstruments.map(inst => (
                         <Card key={inst.id} className="relative group">
                             <h3 className="text-white font-semibold text-center pb-5">

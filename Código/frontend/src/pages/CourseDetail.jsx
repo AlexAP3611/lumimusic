@@ -4,6 +4,7 @@ import api from "../services/api";
 import ProgressBar from "../components/ui/ProgressBar";
 import Button from "../components/ui/Button";
 import { useNavigate } from "react-router-dom";
+import Loading from "../components/ui/Loading";
 
 export default function CourseDetail() {
     const { id } = useParams();
@@ -39,7 +40,7 @@ export default function CourseDetail() {
             .catch(err => console.error(err));
     }, [id]);
 
-    if (!course) return <p>Cargando...</p>;
+    if (!course) return <Loading />;
 
     return (
         <div>
